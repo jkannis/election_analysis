@@ -25,6 +25,14 @@ candidate_votes = {}
 winning_candidate = ""
 winning_count = 0
 winning_percentage = 0
+#Create a list for counties
+counties_voted = []
+# Create a dictionary for county vote counts
+county_votes = {}
+# Highest candidate and highest count tracker
+highest_county = ""
+highest_count = 0
+highest_percentage = 0
 
 # Open the election results and read the file
 with open(file_to_load) as election_data:
@@ -51,6 +59,20 @@ with open(file_to_load) as election_data:
 
         # Add a vote to the candidate's count
         candidate_votes[candidate_name] += 1
+        
+        #Print the county name from each row
+        county_name = row[1]
+        # If the county name does not match any existing county...
+        if county_name not in counties_voted:
+
+            # Add it to the list of counties
+            counties_voted.append(county_name)
+
+            # Begin tracking county vote count
+            county_votes[county_name] = 0
+
+        #Add a vote to the county's count
+        county_votes[county_name] += 1
 
     # Save results to a text file
     with open(file_to_save, "w") as txt_file:
@@ -97,8 +119,34 @@ with open(file_to_load) as election_data:
         # Save the winning candidate's name to the text file
         txt_file.write(winning_candidate_summary)
         
+        # Determine the percentage of votes for each county
+        # Iterate through the county list
+        for county_name in county_votes:
+            # Retrieve vote count of county
+            voters = county_votes[county_name]
+            # Calculate the percentage of votes
+            voter_percentage = float(voters) / float(total_votes) * 100
+            # Print the county name and percentage of votes
+            county_results = (f"{county_name} county: {voter_percentage:.1f}% ({voters:,})\n")
+            print(county_results)
+            # Save the county results to the text file
+            txt_file.write(county_results)
 
-    # Print the results
-    # print(total_votes)
-    # print(candidate_options)
-    # print(candidate_votes)
+            # Determine county with highest turnout
+            # Determine if the voters are greater than the highest count
+            if (voters > highest_count) and (voter_percentage > highest_percentage):
+                # If true then set highest_count = voters and highest_percent = voter_percentage
+                highest_count = voters
+                highest_percentage = voter_percentage
+                # Set the winning_county equal to the county's name
+                winning_county = county_name
+
+        winning_county_summary = (
+            f"---------------------------\n"
+            f"Highest Voter Turnout: {winning_county}\n"
+            f"Voter Count: {highest_count:,}\n"
+            f"Voter Percentage: {highest_percentage:.1f}%\n"
+            f"---------------------------\n")
+        print(winning_county_summary)
+        # Save the winning county's name to the text file
+        txt_file.write(winning_county_summary)
