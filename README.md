@@ -17,10 +17,10 @@ The purpose of this project is to audit the provided tabulated results for a Col
 - Diana DeGette was the winner of this election, with 73.8% of the vote and 272,892 votes.
 
 Election results output generated from this script
-![Colorado Congressional Districts Election Results(https://github.com/jkannis/election_analysis/blob/main/Resources/ElectionResults.png)
+![Colorado Congressional Districts Election Results](https://github.com/jkannis/election_analysis/blob/main/Resources/ElectionResults.png)
 
 ## Election Audit Summary
 - While this script was written specifically to audit the Colorado congressional districts election, some minor modifications could be made to make it usable for any election.
-    - Since this script reads a csv input file of election data, any data could be passed in for processing. If the data being passed in is in the same format as this file with locale in the second column and candidate in the third column, then very little script modification would be required to process and tabulate the results. ![Input file read(https://github.com/jkannis/election_analysis/blob/main/Resources/Script_reuse_1.png) ![File column read example(https://github.com/jkannis/election_analysis/blob/main/Resources/Script_reuse_3.png)
-    - If this script were to be used for a district other than a county modifications to the output details would be required. For example, 'county' would need to be changed to whatever the district type is for the election being audited. ![Output details example(https://github.com/jkannis/election_analysis/blob/main/Resources/Script_reuse_2.png)
+    - Since this script reads a csv input file of election data, any data could be passed in for processing. If the data being passed in is in the same format as this file with locale in the second column and candidate in the third column, then very little script modification would be required to process and tabulate the results. ![Input file read](https://github.com/jkannis/election_analysis/blob/main/Resources/Script_reuse_1.png) ![File column read example](https://github.com/jkannis/election_analysis/blob/main/Resources/Script_reuse_3.png)
+    - If this script were to be used for a district other than a county modifications to the output details would be required. For example, 'county' would need to be changed to whatever the district type is for the election being audited. ![Output details example](https://github.com/jkannis/election_analysis/blob/main/Resources/Script_reuse_2.png)
 
